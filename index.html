@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Casino — Рулетка подарков</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="app" class="app-container dark-theme">
+        <!-- Главная (рулетка) -->
+        <div id="home" class="page active">
+            <div class="top-bar">
+                <div class="gifts-balance">
+                    <span>⭐ <span id="starBalance">0</span></span>
+                </div>
+                <button class="admin-btn" id="adminButton" style="display: none;">👑 Админка</button>
+            </div>
+            
+            <div class="roulette-container">
+                <div class="roulette-wheel" id="rouletteWheel">
+                    <div class="roulette-segment" data-gift="heart">❤️</div>
+                    <div class="roulette-segment" data-gift="bear">🧸</div>
+                    <div class="roulette-segment" data-gift="rose">🌹</div>
+                    <div class="roulette-segment" data-gift="bouquet">💐</div>
+                    <div class="roulette-segment" data-gift="ring">💍</div>
+                </div>
+                <button class="spin-button" id="spinButton">Крутить (⭐5)</button>
+                <p class="free-spin-info">Бесплатно: <span id="freeSpinCount">1</span>/1</p>
+            </div>
+        </div>
+
+        <!-- Профиль -->
+        <div id="profile" class="page">
+            <div class="profile-header">
+                <div class="profile-avatar" id="profileAvatar">👤</div>
+                <div class="profile-name">
+                    <h2 id="profileName">Загрузка...</h2>
+                    <span class="profile-username" id="profileUsername">@username</span>
+                </div>
+            </div>
+            
+            <div class="stats-card">
+                <div class="stat-item">
+                    <span class="stat-label">⭐ Звёзды</span>
+                    <span class="stat-value" id="profileStars">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🎁 Всего подарков</span>
+                    <span class="stat-value" id="profileGifts">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">💰 Коллекция</span>
+                    <span class="stat-value" id="collectionValue">0⭐</span>
+                </div>
+            </div>
+
+            <div class="profile-gifts-section">
+                <h3>🎁 Мои подарки</h3>
+                <div class="profile-gifts-grid" id="profileGiftsGrid"></div>
+            </div>
+        </div>
+
+        <!-- Коллекция подарков (общий список) -->
+        <div id="gifts" class="page">
+            <h2 class="page-title">🎁 Все подарки</h2>
+            <div class="gifts-grid" id="giftsGrid"></div>
+        </div>
+
+        <!-- Админ-панель -->
+        <div id="admin" class="page">
+            <h2 class="page-title">👑 Админ-панель</h2>
+            <div class="admin-card">
+                <h3>Выдать звёзды</h3>
+                <div class="admin-input-group">
+                    <input type="number" id="adminStarsAmount" placeholder="Количество" min="1" value="100">
+                    <button class="admin-action-btn" id="adminAddStars">Выдать себе</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <h3>Выдать подарок</h3>
+                <select id="adminGiftSelect">
+                    <option value="heart">❤️ Сердце (15⭐)</option>
+                    <option value="bear">🧸 Мишка (15⭐)</option>
+                    <option value="rose">🌹 Роза (25⭐)</option>
+                    <option value="bouquet">💐 Букет (50⭐)</option>
+                    <option value="ring">💍 Кольцо (100⭐)</option>
+                </select>
+                <button class="admin-action-btn" id="adminAddGift">Выдать подарок</button>
+            </div>
+            <div class="admin-card">
+                <h3>Сброс прогресса</h3>
+                <button class="admin-action-btn reset-btn" id="adminReset">Сбросить всё</button>
+            </div>
+            <p class="admin-note">Админ-режим доступен только для указанных ID</p>
+        </div>
+
+        <!-- Нижняя навигация -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">🎰</button>
+            <button class="nav-btn" data-page="gifts">🎁</button>
+            <button class="nav-btn" data-page="profile">👤</button>
+            <button class="nav-btn admin-nav-btn" data-page="admin" id="adminNavBtn" style="display: none;">👑</button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
